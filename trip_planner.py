@@ -101,7 +101,28 @@ class trip(object):
 	def show_segments(self):
 		for segment in self.segment_list:
 			print(segment)
-			print('')
+			print('-----------------------')
+
+	def export_json(self):
+		import json
+		segments = []
+		for segment in self.segment_list:
+			segments.append({'segment_name':segment._segment_name,
+							 'segment_time':segment.segment_time,
+							 'segment_start':segment.segment_start,
+							 'segment_end':segment.segment_end})
+		return json.dumps(segments)
+
+	def import_json(self, json_input):
+		segments_dict = json.loads(json_input)
+
+		for segment in self.segment_list:
+			self.add_segment(segment_name=segments_dict['segment_name'],
+							segment_time=segments_dict['segment_time'],
+							segment_start=segments_dict['segment_start'],
+							segment_end=segments_dict['segment_end'])
+		return 'Import Complete'
+
 
 	# def check_segment_solution(self, segment_number):
 	# 	segment = self.segment_list[segment_number]
