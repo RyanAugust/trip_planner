@@ -1,4 +1,4 @@
-# trip_planner
+# Trip Planner
 Trip timing planner.
 
 Given a limited number of details about segment timing the solver will attempt to return a full schedule of segments.
